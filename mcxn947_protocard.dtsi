@@ -19,7 +19,7 @@
 		red_led: led_1 {
 			gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
 			label = "Red LED";
-			status = "disabled";
+			status = "okay";
 		};
 	};
 
@@ -37,6 +37,13 @@
 			zephyr,code = <INPUT_KEY_1>;
 			status = "disabled";
 		};
+	};
+
+	zephyr,user {
+		dac = <&dac0>;
+		dac-channel-id = <0>;
+		dac-resolution = <12>;
+        status = "okay";
 	};
 };
 
