@@ -39,12 +39,11 @@
 		};
 	};
 };
+
 &flexcomm1_lpspi1 {
 	pinctrl-0 = <&pinmux_flexcomm1_lpspi>;
 	pinctrl-names = "default";
 };
-
-
 
 &flexcomm2_lpuart2 {
 	current-speed = <115200>;
@@ -52,17 +51,23 @@
 	pinctrl-names = "default";
 };
 
+&flexcomm0_lpi2c0 {
+	pinctrl-0 = <&pinmux_flexcomm0_lpi2c>;
+	pinctrl-names = "default";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+
+	bme280: bme280@77 {
+		compatible = "bosch,bme280";
+		reg = <0x77>;
+        status = "okay";
+	};
+};
+
 &flexcomm4_lpuart4 {
 	status = "okay";
 	current-speed = <115200>;
 	pinctrl-0 = <&pinmux_flexcomm4_lpuart>;
 	pinctrl-names = "default";
-};
-
-&flexcomm7_lpi2c7 {
-	pinctrl-0 = <&pinmux_flexcomm7_lpi2c>;
-	pinctrl-names = "default";
-	clock-frequency = <I2C_BITRATE_STANDARD>;
 };
 
 /* SmartDMA is used for video driver on this board */

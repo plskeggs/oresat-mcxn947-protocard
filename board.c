@@ -152,6 +152,12 @@ void board_early_init_hook(void)
 	CLOCK_SetClkDiv(kCLOCK_DivPLL1Clk0, 1U);
 #endif
 
+#if DT_NODE_HAS_STATUS_OKAY(DT_NODELABEL(flexcomm0))
+	/* Configure input clock to be able to reach the datasheet specified SPI band rate. */
+	CLOCK_SetClkDiv(kCLOCK_DivFlexcom0Clk, 1u);
+	CLOCK_AttachClk(kFRO_HF_DIV_to_FLEXCOMM0);
+#endif
+
 #if DT_NODE_HAS_STATUS_OKAY(DT_NODELABEL(flexcomm1))
 	/* Configure input clock to be able to reach the datasheet specified SPI band rate. */
 	CLOCK_SetClkDiv(kCLOCK_DivFlexcom1Clk, 1u);
