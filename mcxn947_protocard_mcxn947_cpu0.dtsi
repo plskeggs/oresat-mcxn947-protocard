@@ -12,6 +12,9 @@
 
 #include <nxp/nxp_mcxn94x.dtsi>
 #include "mcxn947_protocard.dtsi"
+#include <zephyr/dt-bindings/adc/adc.h>
+#include <zephyr/dt-bindings/adc/mcux-lpadc.h>
+
 
 / {
 	cpus {
@@ -35,6 +38,42 @@
 		pwm-0 = &flexpwm1_pwm0;
 		pwm-1 = &sc_timer;
 		rtc = &rtc;
+        adc0 = &lpadc0;
+	};
+
+	zephyr,user {
+		dac = <&dac0>;
+		dac-channel-id = <0>;
+		dac-resolution = <12>;
+        status = "okay";
+	};
+};
+
+&lpadc0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	lpadc0_0: channel@0 {
+		reg = <0>;
+		zephyr,gain = "ADC_GAIN_1";
+		zephyr,reference = "ADC_REF_EXTERNAL0";
+		zephyr,vref-mv = <3300>;
+		zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_MICROSECONDS,2)>;
+		zephyr,resolution = <12>;
+        zephyr,oversampling = <5>;
+		zephyr,input-positive = <MCUX_LPADC_CH1A>;
+        /delete-property/ zephyr,differential;
+	};
+	lpadc0_1: channel@1 {
+		reg = <1>;
+		zephyr,gain = "ADC_GAIN_1";
+		zephyr,reference = "ADC_REF_EXTERNAL0";
+		zephyr,vref-mv = <3300>;
+		zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_MICROSECONDS,2)>;
+		zephyr,resolution = <12>;
+        zephyr,oversampling = <5>;
+		zephyr,input-positive = <MCUX_LPADC_CH2A>;
+        /delete-property/ zephyr,differential;
 	};
 };
 
@@ -106,7 +145,7 @@
  * LFLEXCOMM2
  */
 &flexcomm2_lpuart2 {
-	status = "okay";
+	status = "disabled";
 };
 
 &flexcomm0 {

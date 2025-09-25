@@ -38,13 +38,6 @@
 			status = "disabled";
 		};
 	};
-
-	zephyr,user {
-		dac = <&dac0>;
-		dac-channel-id = <0>;
-		dac-resolution = <12>;
-        status = "okay";
-	};
 };
 
 &flexcomm1_lpspi1 {
@@ -56,6 +49,7 @@
 	current-speed = <115200>;
 	pinctrl-0 = <&pinmux_flexcomm2_lpuart>;
 	pinctrl-names = "default";
+	status = "disabled";
 };
 
 &flexcomm0_lpi2c0 {
