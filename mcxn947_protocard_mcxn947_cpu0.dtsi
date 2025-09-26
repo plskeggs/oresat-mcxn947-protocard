@@ -111,41 +111,12 @@
 	status = "okay";
 };
 
-
 &red_led {
-	status = "okay";
-};
-
-&user_button_2 {
 	status = "okay";
 };
 
 &edma0 {
 	status = "okay";
-};
-
-&flexcomm1 {
-	status = "okay";
-};
-
-&flexcomm1_lpspi1 {
-	status = "okay";
-};
-
-&flexcomm2 {
-	status = "okay";
-};
-
-&flexcomm2_lpi2c2 {
-	status = "disabled";
-};
-
-/*
- *LPFLEXCOMM supports UART and I2C on the same instance, enable this for
- * LFLEXCOMM2
- */
-&flexcomm2_lpuart2 {
-	status = "disabled";
 };
 
 &flexcomm0 {
@@ -154,6 +125,26 @@
 
 &flexcomm0_lpi2c0 {
 	status = "okay";
+};
+
+&flexcomm1 {
+	status = "disabled";
+};
+
+&flexcomm1_lpspi1 {
+	status = "disabled";
+};
+
+&flexcomm2 {
+	status = "disabled";
+};
+
+&flexcomm2_lpi2c2 {
+	status = "disabled";
+};
+
+&flexcomm2_lpuart2 {
+	status = "disabled";
 };
 
 &flexcomm4 {
@@ -165,20 +156,7 @@
 };
 
 &flexspi {
-	status = "okay";
-};
-
-&w25q64jvssiq {
-	status = "okay";
-	partitions {
-		compatible = "fixed-partitions";
-		#address-cells = <1>;
-		#size-cells = <1>;
-		storage_partition: partition@0 {
-			label = "storage";
-			reg = <0x0 DT_SIZE_M(8)>;
-		};
-	};
+	status = "disabled";
 };
 
 &dac0 {
@@ -186,15 +164,15 @@
 };
 
 &enet {
-	status = "okay";
+	status = "disabled";
 };
 
 &enet_mac {
-	status = "okay";
+	status = "disabled";
 };
 
 &enet_mdio {
-	status = "okay";
+	status = "disabled";
 };
 
 &wwdt0 {
@@ -214,11 +192,11 @@
 };
 
 &usdhc0 {
-	status = "okay";
+	status = "disabled";
 	sdmmc {
 		compatible = "zephyr,sdmmc-disk";
 		disk-name = "SD";
-		status = "okay";
+    	status = "disabled";
 	};
 };
 
@@ -251,7 +229,7 @@ zephyr_udc0: &usb1 {
 };
 
 &i3c1 {
-	status = "okay";
+	status = "disabled";
 };
 
 &flexio0 {
