@@ -1,18 +1,12 @@
-This repository contains the board files for the NXP MCXN947 protocard (breakout board). 
-Pracblink, a directory I created that is a modified version of  blinky program in zephyr docs that only toggled an LED, 
-and I modified it so that every time the LED changes state, the program also sends a message (light is blinking!) over the UART serial port. 
-Here is a link to the pracblink repo (https://github.com/Blen-E/pracblink.git ). 
-Ensure that the pracblink  is in the correct directory (what I named my directory)--> zephyrproject/zephyr/pracblink. 
-Ensure that the mcxn_protocard repo is placed in the correct directory → zephyrproject/boards/mcxn947_protocard. 
+# Oresat MCXN Breakout
 
-Zephyr version:  4.2.99
+This repository contains the board files for the Oresat MCXN947 protocard (breakout board).
 
-1. Clone this repository and pracblink repository  
-2. Enter virtual environment: source ~/zephyrproject/.venv/bin/activate
-3. Enter zephyr directory: cd ~/zephyrproject
-4. West build:
-west build -b mcxn947_protocard/mcxn947/cpu0 zephyr/pracblink -- -DBOARD_ROOT=/home/blen-ermias/zephyrproject 
-5. West flash:
-west flash -r jlink
-6. Enter Picocom: 
-picocom -b 115200 /dev/ttyUSB0 
+It currently enables flexcomm4 UART for the console, I2C0 with a Bosch Sensortec BME280,
+DAC0, and ADC0 channels 1A and 2A.
+
+TODO: move this into the common repo, make it generic for the breakout board,
+then define app-specific device tree changes in a device tree overlay in any apps that need to
+use this board.
+
+Follow the [README installation instructions](https://github.com/plskeggs/oresat-zephyr-common) for installation.
